@@ -16,6 +16,7 @@ import (
 	"github.com/stainless-sdks/caesar-go/internal/apiquery"
 	"github.com/stainless-sdks/caesar-go/internal/requestconfig"
 	"github.com/stainless-sdks/caesar-go/option"
+	"github.com/stainless-sdks/caesar-go/packages/pagination"
 	"github.com/stainless-sdks/caesar-go/packages/param"
 	"github.com/stainless-sdks/caesar-go/packages/respjson"
 )
@@ -48,11 +49,26 @@ func (r *ResearchFileService) New(ctx context.Context, body ResearchFileNewParam
 }
 
 // Returns a paginated list of Research File objects.
-func (r *ResearchFileService) List(ctx context.Context, query ResearchFileListParams, opts ...option.RequestOption) (res *ResearchFileListResponse, err error) {
+func (r *ResearchFileService) List(ctx context.Context, query ResearchFileListParams, opts ...option.RequestOption) (res *pagination.Pagination[ResearchFileListResponse], err error) {
+	var raw *http.Response
 	opts = slices.Concat(r.Options, opts)
+	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "research/files"
-	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
+	if err != nil {
+		return nil, err
+	}
+	err = cfg.Execute()
+	if err != nil {
+		return nil, err
+	}
+	res.SetPageConfig(cfg, raw)
+	return res, nil
+}
+
+// Returns a paginated list of Research File objects.
+func (r *ResearchFileService) ListAutoPaging(ctx context.Context, query ResearchFileListParams, opts ...option.RequestOption) *pagination.PaginationAutoPager[ResearchFileListResponse] {
+	return pagination.NewPaginationAutoPager(r.List(ctx, query, opts...))
 }
 
 type ResearchFileNewResponse struct {
@@ -79,25 +95,6 @@ func (r *ResearchFileNewResponse) UnmarshalJSON(data []byte) error {
 }
 
 type ResearchFileListResponse struct {
-	// List of file objects.
-	Data       []ResearchFileListResponseData     `json:"data,required"`
-	Pagination ResearchFileListResponsePagination `json:"pagination,required"`
-	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
-	JSON struct {
-		Data        respjson.Field
-		Pagination  respjson.Field
-		ExtraFields map[string]respjson.Field
-		raw         string
-	} `json:"-"`
-}
-
-// Returns the unmodified JSON received from the API
-func (r ResearchFileListResponse) RawJSON() string { return r.JSON.raw }
-func (r *ResearchFileListResponse) UnmarshalJSON(data []byte) error {
-	return apijson.UnmarshalRoot(data, r)
-}
-
-type ResearchFileListResponseData struct {
 	// Unique identifier for the file.
 	ID string `json:"id,required" format:"uuid"`
 	// MIME type of the file as detected/stored.
@@ -115,34 +112,8 @@ type ResearchFileListResponseData struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r ResearchFileListResponseData) RawJSON() string { return r.JSON.raw }
-func (r *ResearchFileListResponseData) UnmarshalJSON(data []byte) error {
-	return apijson.UnmarshalRoot(data, r)
-}
-
-type ResearchFileListResponsePagination struct {
-	// Whether another page is available.
-	HasNext bool `json:"has_next,required"`
-	// Page size (items per page).
-	Limit int64 `json:"limit,required"`
-	// Current page number (1-based).
-	Page int64 `json:"page,required"`
-	// Total number of items (may be omitted).
-	Total int64 `json:"total"`
-	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
-	JSON struct {
-		HasNext     respjson.Field
-		Limit       respjson.Field
-		Page        respjson.Field
-		Total       respjson.Field
-		ExtraFields map[string]respjson.Field
-		raw         string
-	} `json:"-"`
-}
-
-// Returns the unmodified JSON received from the API
-func (r ResearchFileListResponsePagination) RawJSON() string { return r.JSON.raw }
-func (r *ResearchFileListResponsePagination) UnmarshalJSON(data []byte) error {
+func (r ResearchFileListResponse) RawJSON() string { return r.JSON.raw }
+func (r *ResearchFileListResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
