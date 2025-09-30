@@ -1,4 +1,4 @@
 configured_endpoints: 6
-openapi_spec_url: https://storage.googleapis.com/stainless-sdk-openapi-specs/caesar-data--inc-dash%2Fcaesar-a7bcf01e107cb16fbc35b08ab43c5100218ae79e47bad5e5249f0491bb2660eb.yml
-openapi_spec_hash: 62d6f9aefabf940c518d503577eb4f2e
-config_hash: abd5476a5b5534aa7a5cc4ff418e3a2d
+openapi_spec_url: https://storage.googleapis.com/stainless-sdk-openapi-specs/caesar-data--inc-dash%2Fcaesar-8b051f91d1f9f65198583a5b37ddceb59e7ac9cdbcaa4bf813f6486459c6aebb.yml
+openapi_spec_hash: 174d935ff3f24ab73047ed570712a2d3
+config_hash: bece23ecc67e4276f68f8342c8482776
