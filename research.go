@@ -15,6 +15,7 @@ import (
 	"github.com/stainless-sdks/caesar-go/internal/apiquery"
 	"github.com/stainless-sdks/caesar-go/internal/requestconfig"
 	"github.com/stainless-sdks/caesar-go/option"
+	"github.com/stainless-sdks/caesar-go/packages/pagination"
 	"github.com/stainless-sdks/caesar-go/packages/param"
 	"github.com/stainless-sdks/caesar-go/packages/respjson"
 )
@@ -63,11 +64,26 @@ func (r *ResearchService) Get(ctx context.Context, id string, opts ...option.Req
 }
 
 // Returns a paginated list of research objects.
-func (r *ResearchService) List(ctx context.Context, query ResearchListParams, opts ...option.RequestOption) (res *ResearchListResponse, err error) {
+func (r *ResearchService) List(ctx context.Context, query ResearchListParams, opts ...option.RequestOption) (res *pagination.Pagination[ResearchListResponse], err error) {
+	var raw *http.Response
 	opts = slices.Concat(r.Options, opts)
+	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "research"
-	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
+	if err != nil {
+		return nil, err
+	}
+	err = cfg.Execute()
+	if err != nil {
+		return nil, err
+	}
+	res.SetPageConfig(cfg, raw)
+	return res, nil
+}
+
+// Returns a paginated list of research objects.
+func (r *ResearchService) ListAutoPaging(ctx context.Context, query ResearchListParams, opts ...option.RequestOption) *pagination.PaginationAutoPager[ResearchListResponse] {
+	return pagination.NewPaginationAutoPager(r.List(ctx, query, opts...))
 }
 
 type ResearchNewResponse struct {
@@ -187,25 +203,6 @@ const (
 )
 
 type ResearchListResponse struct {
-	// List of research objects.
-	Data       []ResearchListResponseData     `json:"data,required"`
-	Pagination ResearchListResponsePagination `json:"pagination,required"`
-	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
-	JSON struct {
-		Data        respjson.Field
-		Pagination  respjson.Field
-		ExtraFields map[string]respjson.Field
-		raw         string
-	} `json:"-"`
-}
-
-// Returns the unmodified JSON received from the API
-func (r ResearchListResponse) RawJSON() string { return r.JSON.raw }
-func (r *ResearchListResponse) UnmarshalJSON(data []byte) error {
-	return apijson.UnmarshalRoot(data, r)
-}
-
-type ResearchListResponseData struct {
 	// Research job identifier.
 	ID string `json:"id,required" format:"uuid"`
 	// ISO 8601 timestamp when the job was created.
@@ -213,12 +210,12 @@ type ResearchListResponseData struct {
 	// Original query.
 	Query string `json:"query,required"`
 	// Ranked retrieval results and citations.
-	Results []ResearchListResponseDataResult `json:"results,required"`
+	Results []ResearchListResponseResult `json:"results,required"`
 	// Current status of the research job.
 	//
 	// Any of "queued", "searching", "summarizing", "analyzing", "completed", "failed",
 	// "researching".
-	Status string `json:"status,required"`
+	Status ResearchListResponseStatus `json:"status,required"`
 	// Final content/synthesis (null until available).
 	Content string `json:"content,nullable"`
 	// Post-processed content (e.g., formatted/converted).
@@ -238,12 +235,12 @@ type ResearchListResponseData struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r ResearchListResponseData) RawJSON() string { return r.JSON.raw }
-func (r *ResearchListResponseData) UnmarshalJSON(data []byte) error {
+func (r ResearchListResponse) RawJSON() string { return r.JSON.raw }
+func (r *ResearchListResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
-type ResearchListResponseDataResult struct {
+type ResearchListResponseResult struct {
 	// Result object identifier.
 	ID string `json:"id,required" format:"uuid"`
 	// Relevance score (0–1).
@@ -267,36 +264,23 @@ type ResearchListResponseDataResult struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r ResearchListResponseDataResult) RawJSON() string { return r.JSON.raw }
-func (r *ResearchListResponseDataResult) UnmarshalJSON(data []byte) error {
+func (r ResearchListResponseResult) RawJSON() string { return r.JSON.raw }
+func (r *ResearchListResponseResult) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
-type ResearchListResponsePagination struct {
-	// Whether another page is available.
-	HasNext bool `json:"has_next,required"`
-	// Page size (items per page).
-	Limit int64 `json:"limit,required"`
-	// Current page number (1-based).
-	Page int64 `json:"page,required"`
-	// Total number of items (may be omitted).
-	Total int64 `json:"total"`
-	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
-	JSON struct {
-		HasNext     respjson.Field
-		Limit       respjson.Field
-		Page        respjson.Field
-		Total       respjson.Field
-		ExtraFields map[string]respjson.Field
-		raw         string
-	} `json:"-"`
-}
+// Current status of the research job.
+type ResearchListResponseStatus string
 
-// Returns the unmodified JSON received from the API
-func (r ResearchListResponsePagination) RawJSON() string { return r.JSON.raw }
-func (r *ResearchListResponsePagination) UnmarshalJSON(data []byte) error {
-	return apijson.UnmarshalRoot(data, r)
-}
+const (
+	ResearchListResponseStatusQueued      ResearchListResponseStatus = "queued"
+	ResearchListResponseStatusSearching   ResearchListResponseStatus = "searching"
+	ResearchListResponseStatusSummarizing ResearchListResponseStatus = "summarizing"
+	ResearchListResponseStatusAnalyzing   ResearchListResponseStatus = "analyzing"
+	ResearchListResponseStatusCompleted   ResearchListResponseStatus = "completed"
+	ResearchListResponseStatusFailed      ResearchListResponseStatus = "failed"
+	ResearchListResponseStatusResearching ResearchListResponseStatus = "researching"
+)
 
 type ResearchNewParams struct {
 	// Primary research question or instruction.
