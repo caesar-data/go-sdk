@@ -7,10 +7,10 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/stainless-sdks/caesar-go/internal/apijson"
-	"github.com/stainless-sdks/caesar-go/internal/requestconfig"
-	"github.com/stainless-sdks/caesar-go/packages/param"
-	"github.com/stainless-sdks/caesar-go/packages/respjson"
+	"github.com/caesar-data/go-sdk/internal/apijson"
+	"github.com/caesar-data/go-sdk/internal/requestconfig"
+	"github.com/caesar-data/go-sdk/packages/param"
+	"github.com/caesar-data/go-sdk/packages/respjson"
 )
 
 // aliased to make [param.APIUnion] private when embedding

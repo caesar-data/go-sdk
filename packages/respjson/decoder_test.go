@@ -3,8 +3,8 @@ package respjson_test
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/stainless-sdks/caesar-go/internal/apijson"
-	rj "github.com/stainless-sdks/caesar-go/packages/respjson"
+	"github.com/caesar-data/go-sdk/internal/apijson"
+	rj "github.com/caesar-data/go-sdk/packages/respjson"
 	"reflect"
 	"testing"
 )

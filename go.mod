@@ -1,4 +1,4 @@
-module github.com/stainless-sdks/caesar-go
+module github.com/caesar-data/go-sdk
 
 go 1.22
 

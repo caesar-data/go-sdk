@@ -2,8 +2,8 @@ package apijson_test
 
 import (
 	"encoding/json"
-	"github.com/stainless-sdks/caesar-go/internal/apijson"
-	"github.com/stainless-sdks/caesar-go/packages/respjson"
+	"github.com/caesar-data/go-sdk/internal/apijson"
+	"github.com/caesar-data/go-sdk/packages/respjson"
 	"testing"
 )
 

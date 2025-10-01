@@ -1,7 +1,7 @@
 package apiquery
 
 import (
-	"github.com/stainless-sdks/caesar-go/packages/param"
+	"github.com/caesar-data/go-sdk/packages/param"
 	"net/url"
 	"testing"
 	"time"
