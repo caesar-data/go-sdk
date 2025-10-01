@@ -1,7 +1,7 @@
 package apijson
 
 import (
-	"github.com/stainless-sdks/caesar-go/packages/respjson"
+	"github.com/caesar-data/go-sdk/packages/respjson"
 	"reflect"
 )
 

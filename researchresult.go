@@ -9,10 +9,10 @@ import (
 	"net/http"
 	"slices"
 
-	"github.com/stainless-sdks/caesar-go/internal/apijson"
-	"github.com/stainless-sdks/caesar-go/internal/requestconfig"
-	"github.com/stainless-sdks/caesar-go/option"
-	"github.com/stainless-sdks/caesar-go/packages/respjson"
+	"github.com/caesar-data/go-sdk/internal/apijson"
+	"github.com/caesar-data/go-sdk/internal/requestconfig"
+	"github.com/caesar-data/go-sdk/option"
+	"github.com/caesar-data/go-sdk/packages/respjson"
 )
 
 // ResearchResultService contains methods and other services that help with

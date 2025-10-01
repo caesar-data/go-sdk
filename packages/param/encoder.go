@@ -7,7 +7,7 @@ import (
 	"strings"
 	"time"
 
-	shimjson "github.com/stainless-sdks/caesar-go/internal/encoding/json"
+	shimjson "github.com/caesar-data/go-sdk/internal/encoding/json"
 
 	"github.com/tidwall/sjson"
 )

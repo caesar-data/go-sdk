@@ -5,7 +5,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/stainless-sdks/caesar-go/packages/param"
+	"github.com/caesar-data/go-sdk/packages/param"
 )
 
 type Struct struct {

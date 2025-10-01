@@ -2,7 +2,7 @@ package param_test
 
 import (
 	"encoding/json"
-	"github.com/stainless-sdks/caesar-go/packages/param"
+	"github.com/caesar-data/go-sdk/packages/param"
 	"testing"
 )
 

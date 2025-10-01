@@ -2,7 +2,7 @@ package param
 
 import (
 	"encoding/json"
-	"github.com/stainless-sdks/caesar-go/internal/encoding/json/sentinel"
+	"github.com/caesar-data/go-sdk/internal/encoding/json/sentinel"
 	"reflect"
 )
 

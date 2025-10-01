@@ -3,8 +3,8 @@
 package caesar
 
 import (
-	"github.com/stainless-sdks/caesar-go/internal/apierror"
-	"github.com/stainless-sdks/caesar-go/packages/param"
+	"github.com/caesar-data/go-sdk/internal/apierror"
+	"github.com/caesar-data/go-sdk/packages/param"
 )
 
 // aliased to make [param.APIUnion] private when embedding

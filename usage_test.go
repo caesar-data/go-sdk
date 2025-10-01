@@ -7,9 +7,9 @@ import (
 	"os"
 	"testing"
 
-	"github.com/stainless-sdks/caesar-go"
-	"github.com/stainless-sdks/caesar-go/internal/testutil"
-	"github.com/stainless-sdks/caesar-go/option"
+	"github.com/caesar-data/go-sdk"
+	"github.com/caesar-data/go-sdk/internal/testutil"
+	"github.com/caesar-data/go-sdk/option"
 )
 
 func TestUsage(t *testing.T) {

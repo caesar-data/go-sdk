@@ -13,7 +13,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/stainless-sdks/caesar-go/packages/param"
+	"github.com/caesar-data/go-sdk/packages/param"
 )
 
 var encoders sync.Map // map[encoderEntry]encoderFunc
