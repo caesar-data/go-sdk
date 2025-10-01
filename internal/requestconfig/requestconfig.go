@@ -18,10 +18,10 @@ import (
 	"strings"
 	"time"
 
-	"github.com/stainless-sdks/caesar-go/internal"
-	"github.com/stainless-sdks/caesar-go/internal/apierror"
-	"github.com/stainless-sdks/caesar-go/internal/apiform"
-	"github.com/stainless-sdks/caesar-go/internal/apiquery"
+	"github.com/caesar-data/go-sdk/internal"
+	"github.com/caesar-data/go-sdk/internal/apierror"
+	"github.com/caesar-data/go-sdk/internal/apiform"
+	"github.com/caesar-data/go-sdk/internal/apiquery"
 )
 
 func getDefaultHeaders() map[string]string {

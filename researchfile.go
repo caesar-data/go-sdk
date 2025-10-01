@@ -11,14 +11,14 @@ import (
 	"net/url"
 	"slices"
 
-	"github.com/stainless-sdks/caesar-go/internal/apiform"
-	"github.com/stainless-sdks/caesar-go/internal/apijson"
-	"github.com/stainless-sdks/caesar-go/internal/apiquery"
-	"github.com/stainless-sdks/caesar-go/internal/requestconfig"
-	"github.com/stainless-sdks/caesar-go/option"
-	"github.com/stainless-sdks/caesar-go/packages/pagination"
-	"github.com/stainless-sdks/caesar-go/packages/param"
-	"github.com/stainless-sdks/caesar-go/packages/respjson"
+	"github.com/caesar-data/go-sdk/internal/apiform"
+	"github.com/caesar-data/go-sdk/internal/apijson"
+	"github.com/caesar-data/go-sdk/internal/apiquery"
+	"github.com/caesar-data/go-sdk/internal/requestconfig"
+	"github.com/caesar-data/go-sdk/option"
+	"github.com/caesar-data/go-sdk/packages/pagination"
+	"github.com/caesar-data/go-sdk/packages/param"
+	"github.com/caesar-data/go-sdk/packages/respjson"
 )
 
 // ResearchFileService contains methods and other services that help with

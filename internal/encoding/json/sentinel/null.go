@@ -1,7 +1,7 @@
 package sentinel
 
 import (
-	"github.com/stainless-sdks/caesar-go/internal/encoding/json/shims"
+	"github.com/caesar-data/go-sdk/internal/encoding/json/shims"
 	"reflect"
 	"sync"
 )

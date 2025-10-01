@@ -1,8 +1,8 @@
 package sentinel_test
 
 import (
-	"github.com/stainless-sdks/caesar-go/internal/encoding/json/sentinel"
-	"github.com/stainless-sdks/caesar-go/packages/param"
+	"github.com/caesar-data/go-sdk/internal/encoding/json/sentinel"
+	"github.com/caesar-data/go-sdk/packages/param"
 	"reflect"
 	"slices"
 	"testing"

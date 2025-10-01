@@ -10,9 +10,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/stainless-sdks/caesar-go"
-	"github.com/stainless-sdks/caesar-go/internal"
-	"github.com/stainless-sdks/caesar-go/option"
+	"github.com/caesar-data/go-sdk"
+	"github.com/caesar-data/go-sdk/internal"
+	"github.com/caesar-data/go-sdk/option"
 )
 
 type closureTransport struct {

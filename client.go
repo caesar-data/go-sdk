@@ -8,8 +8,8 @@ import (
 	"os"
 	"slices"
 
-	"github.com/stainless-sdks/caesar-go/internal/requestconfig"
-	"github.com/stainless-sdks/caesar-go/option"
+	"github.com/caesar-data/go-sdk/internal/requestconfig"
+	"github.com/caesar-data/go-sdk/option"
 )
 
 // Client creates a struct with services and top level methods that help with
