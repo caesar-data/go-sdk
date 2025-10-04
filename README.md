@@ -6,7 +6,7 @@
 
 <!-- x-release-please-end -->
 
-The Caesar Go library provides convenient access to the [Caesar REST API](https://docs.caesar.xyz/)
+The Caesar Go library provides convenient access to the [Caesar REST API](https://docs.caesar.xyz)
 from applications written in Go.
 
 It is generated with [Stainless](https://www.stainless.com/).
