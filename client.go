@@ -17,6 +17,7 @@ import (
 // directly, and instead use the [NewClient] method instead.
 type Client struct {
 	Options  []option.RequestOption
+	X402     X402Service
 	Research ResearchService
 }
 
@@ -42,6 +43,7 @@ func NewClient(opts ...option.RequestOption) (r Client) {
 
 	r = Client{Options: opts}
 
+	r.X402 = NewX402Service(opts...)
 	r.Research = NewResearchService(opts...)
 
 	return
