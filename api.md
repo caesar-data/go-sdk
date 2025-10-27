@@ -1,3 +1,15 @@
+# X402
+
+## Research
+
+Response Types:
+
+- <a href="https://pkg.go.dev/github.com/caesar-data/go-sdk">caesar</a>.<a href="https://pkg.go.dev/github.com/caesar-data/go-sdk#X402ResearchNewResponse">X402ResearchNewResponse</a>
+
+Methods:
+
+- <code title="post /x402/research">client.X402.Research.<a href="https://pkg.go.dev/github.com/caesar-data/go-sdk#X402ResearchService.New">New</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, params <a href="https://pkg.go.dev/github.com/caesar-data/go-sdk">caesar</a>.<a href="https://pkg.go.dev/github.com/caesar-data/go-sdk#X402ResearchNewParams">X402ResearchNewParams</a>) (<a href="https://pkg.go.dev/github.com/caesar-data/go-sdk">caesar</a>.<a href="https://pkg.go.dev/github.com/caesar-data/go-sdk#X402ResearchNewResponse">X402ResearchNewResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
+
 # Research
 
 Response Types:
