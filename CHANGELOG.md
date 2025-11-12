@@ -1,5 +1,21 @@
 # Changelog
 
+## 0.2.0 (2025-11-12)
+
+Full Changelog: [v0.1.0...v0.2.0](https://github.com/caesar-data/go-sdk/compare/v0.1.0...v0.2.0)
+
+### Features
+
+* **api:** manual updates ([d094cdb](https://github.com/caesar-data/go-sdk/commit/d094cdb45070b4b3861c881de67f8414be21d46e))
+* **api:** manual updates ([cece704](https://github.com/caesar-data/go-sdk/commit/cece704b78c17090bc9885e4194eea58a888088c))
+* **api:** manual updates ([011af52](https://github.com/caesar-data/go-sdk/commit/011af521dbadef1a2723f2b14333376fb64f55f6))
+
+
+### Chores
+
+* bump gjson version ([3f0dffc](https://github.com/caesar-data/go-sdk/commit/3f0dffc1657cef8bf75ab633a09562486a38657d))
+* **internal:** grammar fix (it's -&gt; its) ([376cc84](https://github.com/caesar-data/go-sdk/commit/376cc84671184655ee1819236bb4fc4cdf6dbcdc))
+
 ## 0.1.0 (2025-10-01)
 
 Full Changelog: [v0.0.1...v0.1.0](https://github.com/caesar-data/go-sdk/compare/v0.0.1...v0.1.0)
